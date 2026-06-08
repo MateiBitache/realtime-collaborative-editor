@@ -5,7 +5,7 @@ RUN mvn -q dependency:go-offline
 COPY src ./src
 RUN mvn -q package
 
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/collab-editor-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080

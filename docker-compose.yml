@@ -2,8 +2,6 @@ services:
   backend:
     build:
       context: ./backend
-    ports:
-      - "8080:8080"
     volumes:
       - backend-data:/app/data
     healthcheck:
@@ -16,10 +14,15 @@ services:
     build:
       context: ./frontend
     ports:
-      - "5173:5173"
+      - "3000:80"
     depends_on:
       backend:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "-", "http://localhost/"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
 volumes:
   backend-data:
