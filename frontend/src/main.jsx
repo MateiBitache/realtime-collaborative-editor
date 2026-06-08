@@ -7,7 +7,7 @@ import { createEditorId, defaultUserName, saveUserName } from "./editorSession";
 import { useDocumentSocket } from "./useDocumentSocket";
 import "./styles.css";
 
-function App() {
+export function App() {
   const [documents, setDocuments] = React.useState([]);
   const [document, setDocument] = React.useState(null);
   const [title, setTitle] = React.useState("Interview Notes");
@@ -166,4 +166,8 @@ function App() {
   );
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+const root = document.getElementById("root");
+
+if (root) {
+  createRoot(root).render(<App />);
+}

@@ -1,5 +1,9 @@
 export function createEditorId() {
-  return crypto.randomUUID();
+  if (globalThis.crypto?.randomUUID) {
+    return globalThis.crypto.randomUUID();
+  }
+
+  return `editor-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 }
 
 export function defaultUserName() {
